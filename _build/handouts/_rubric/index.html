@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Rubric | Devmountain Foundations</title>
+
+      <link
+        href="../_static/pygments.css"
+        rel="stylesheet"
+        type="text/css"
+      />
+      <link href="../_static/devmountain.css" rel="stylesheet" type="text/css" />
+          <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+          <link rel="stylesheet" type="text/css" href="../_static/devmountain.css" />
+          <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+          <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+      <script src="../_static/pdfobject.min.js"></script>
+      
+  </head>
+  <body>
+      <div id="handouts-container">
+        <header id="page-header">
+            <p id="project-title">Devmountain Foundations</p>
+            <p id="page-title">Rubric</p>
+              <p id="backlink">
+                <a href="/"> &laquo; Back to Homepage </a>
+              </p>
+        </header>
+
+        <nav id="page-toc"><ul>
+<li><a class="reference internal" href="#">Rubric</a></li>
+<li><a class="reference internal" href="#problems-to-be-corrected">Problems to be Corrected</a></li>
+<li><a class="reference internal" href="#part-i">Part I</a></li>
+<li><a class="reference internal" href="#part-ii">Part II</a></li>
+<li><a class="reference internal" href="#part-iii">Part III</a></li>
+<li><a class="reference internal" href="#part-iv">Part IV</a></li>
+<li><a class="reference internal" href="#part-v">Part V</a></li>
+</ul>
+</nav>
+
+        <main id="page-content">
+            <section class="section" id="rubric">
+<h1>Rubric</h1>
+<p>Here are the expectations/suggestions for TAing the Classes Exercise.</p>
+</section>
+<section class="section" id="problems-to-be-corrected">
+<h1>Problems to be Corrected</h1>
+<ul class="simple">
+<li><p>Students are confused on Part II and Further Study. Both on the concept of inheritance (not covered in lecture yet), and what the instructions are actually asking.</p></li>
+<li><p>Part I’s instructions were also confusing to some students.</p></li>
+<li><p>The rubric is way too long, so none of the instructors nor TAs read it. So we were also in the midst of confusion.</p></li>
+</ul>
+</section>
+<section class="section" id="part-i">
+<h1>Part I</h1>
+<p>In this part, we want them to show that they can build standard classes.</p>
+<p>A good outcome would be a series of standalone classes, like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">WatermelonOrder</span><span class="p">:</span>
+    <span class="n">species</span> <span class="o">=</span> <span class="s2">&quot;Watermelon&quot;</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;green&quot;</span>
+    <span class="n">imported</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="s1">&#39;natural&#39;</span>
+    <span class="n">seasons</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Fall&#39;</span><span class="p">,</span> <span class="s1">&#39;Summer&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qty</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="mf">5.0</span> <span class="o">*</span> <span class="n">qty</span>
+        <span class="k">if</span> <span class="n">qty</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">*</span> <span class="mf">0.75</span>
+        <span class="k">return</span> <span class="n">total</span>
+
+<span class="k">class</span> <span class="nc">OgenOrder</span><span class="p">:</span>
+    <span class="n">species</span> <span class="o">=</span> <span class="s2">&quot;Ogen&quot;</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;tan&quot;</span>
+    <span class="n">imported</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="s1">&#39;natural&#39;</span>
+    <span class="n">seasons</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Spring&#39;</span><span class="p">,</span> <span class="s1">&#39;Summer&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qty</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="mf">6.0</span> <span class="o">*</span> <span class="n">qty</span>
+        <span class="k">return</span> <span class="n">total</span>
+
+<span class="c1"># rest of classes follow</span>
+</pre></div>
+</div>
+<p>Things to look for:</p>
+<ul class="simple">
+<li><p>Did they subclass <code class="docutils literal notranslate"><span class="pre">object</span></code>?</p></li>
+<li><p><strong>naming conventions</strong>: are the class names in CamelCase?</p></li>
+<li><p>Did they add the attributes for each melon type? Did they think to add
+a “species” attribute? (If, point out how it might be hard to print the
+name of the melon, especially for melons like ‘Santa Claus’, where the
+name would look ugly if it was printed SantaClausOrder)</p></li>
+<li><p>Did they remember to make Casaba and Ogen melons be $6 each?</p></li>
+<li><p>Did they make the foreign melons cost 1.5 as much?</p></li>
+<li><p>Did they make the square melons cost 2.0 as much?</p></li>
+<li><p>Did they put in the quantity discounts for Watermelon (75% for 3+) and
+for Cantaloupe (50% for 5+)?</p></li>
+</ul>
+</section>
+<section class="section" id="part-ii">
+<h1>Part II</h1>
+<p>The goal here is for them to end up with a <cite>Order</cite> parent class with a
+<code class="docutils literal notranslate"><span class="pre">get_base_price</span></code> method, like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Order</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get_base_price</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mf">5.0</span>
+</pre></div>
+</div>
+<p>And then have the melon type classes use that:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">WatermelonOrder</span><span class="p">(</span><span class="n">Order</span><span class="p">):</span>
+    <span class="n">species</span> <span class="o">=</span> <span class="s2">&quot;Watermelon&quot;</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;green&quot;</span>
+    <span class="n">imported</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="s1">&#39;natural&#39;</span>
+    <span class="n">seasons</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Fall&#39;</span><span class="p">,</span> <span class="s1">&#39;Summer&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qty</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_base_price</span><span class="p">()</span> <span class="o">*</span> <span class="n">qty</span>
+        <span class="k">if</span> <span class="n">qty</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">*</span> <span class="mf">0.75</span>
+        <span class="k">return</span> <span class="n">total</span>
+
+<span class="k">class</span> <span class="nc">OgenOrder</span><span class="p">(</span><span class="n">Order</span><span class="p">):</span>
+    <span class="n">species</span> <span class="o">=</span> <span class="s2">&quot;Ogen&quot;</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;tan&quot;</span>
+    <span class="n">imported</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="s1">&#39;natural&#39;</span>
+    <span class="n">seasons</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Spring&#39;</span><span class="p">,</span> <span class="s1">&#39;Summer&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qty</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_base_price</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">qty</span>
+        <span class="k">return</span> <span class="n">total</span>
+</pre></div>
+</div>
+<p>Some things to look for:</p>
+<ul class="simple">
+<li><p>Did they remember to have the melon type classes subclass Melon?</p></li>
+<li><p>Did they remember to add $1 to the base cost for Ogen and Casaba?</p></li>
+</ul>
+</section>
+<section class="section" id="part-iii">
+<h1>Part III</h1>
+<p>The goal here is for them to understand that the Order class is an
+“abstract class” – it shouldn’t be instantiated directly. They also will
+be learning about raising exceptions.</p>
+<p>This is often done with one or both of these methods:</p>
+<ol class="arabic simple">
+<li><p>Name it something obvious (“BaseOrder” or “AbstractOrder”)</p></li>
+<li><p>Prevent instantiation</p></li>
+</ol>
+<p>A good outcome could be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">AbstractOrder</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Common logic for all melons.</span>
+
+<span class="sd">    Not meant to be instantiated directly.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Don&#39;t make instances of me&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_base_price</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mf">5.0</span>
+</pre></div>
+</div>
+<p>Alternatively, they could not block instantiation directly, but give an
+error on calling <code class="docutils literal notranslate"><span class="pre">get_price()</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">AbstractOrder</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Common logic for all melons.</span>
+
+<span class="sd">    Not meant to be instantiated directly.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">get_base_price</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mf">5.0</span>
+
+    <span class="k">def</span> <span class="nf">get_price</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t use this directly&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The first is a better outcome, though–it prevents trying to make instances
+immediately, so you get an error earlier and a more obvious place.</p>
+<p>We also wanted them to discover NotImplementedError. They could raise this
+either like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</pre></div>
+</div>
+<p>or like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;providing a string explanation here&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The second is nice to learn, as it lets them provide some documentation for
+their error.</p>
+</section>
+<section class="section" id="part-iv">
+<h1>Part IV</h1>
+<p>The goal here is to move some of the common logic to the parent class, while
+getting data from the subclass.</p>
+<p>A good outcome would be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">AbstractOrder</span><span class="p">:</span>
+    <span class="n">add_on</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Don&#39;t make instances of me&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_base_price</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mf">5.0</span>
+
+    <span class="k">def</span> <span class="nf">get_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qty</span><span class="p">):</span>
+        <span class="n">each</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_base_price</span><span class="p">()</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_on</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="n">each</span> <span class="o">*</span> <span class="n">qty</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">imported</span><span class="p">:</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">*</span> <span class="mf">1.5</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="s1">&#39;square&#39;</span><span class="p">:</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">*</span> <span class="mi">2</span>
+
+        <span class="k">return</span> <span class="n">total</span>
+
+<span class="k">class</span> <span class="nc">WatermelonOrder</span><span class="p">(</span><span class="n">AbstractOrder</span><span class="p">):</span>
+    <span class="n">species</span> <span class="o">=</span> <span class="s2">&quot;Watermelon&quot;</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;green&quot;</span>
+    <span class="n">imported</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="s1">&#39;natural&#39;</span>
+    <span class="n">seasons</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Fall&#39;</span><span class="p">,</span> <span class="s1">&#39;Summer&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qty</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">Watermelon</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_price</span><span class="p">(</span><span class="n">qty</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">qty</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">*</span> <span class="mf">0.75</span>
+        <span class="k">return</span> <span class="n">total</span>
+
+<span class="k">class</span> <span class="nc">OgenOrder</span><span class="p">(</span><span class="n">AbstractOrder</span><span class="p">):</span>
+    <span class="n">species</span> <span class="o">=</span> <span class="s2">&quot;Ogen&quot;</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;tan&quot;</span>
+    <span class="n">imported</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="s1">&#39;natural&#39;</span>
+    <span class="n">seasons</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Spring&#39;</span><span class="p">,</span> <span class="s1">&#39;Summer&#39;</span><span class="p">]</span>
+
+    <span class="n">add_on</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>This may be hard for them to get through and may need hints, especially around
+the <code class="docutils literal notranslate"><span class="pre">add_on</span></code> attribute.</p>
+<p>Some things to look for:</p>
+<ul class="simple">
+<li><p>There’s no need for them to define <code class="docutils literal notranslate"><span class="pre">add_on</span></code> on the melons that don’t have
+an add-on cost; they can put this on the <cite>AbstractMelon</cite> and inherit this
+common class.</p></li>
+<li><p>All of the logic of multiple-by-qty, adjust-for-origin, adjust-for-shape
+should be in the parent <code class="docutils literal notranslate"><span class="pre">get_price()</span></code></p></li>
+<li><p>Are they calling <code class="docutils literal notranslate"><span class="pre">super()</span></code> properly?</p></li>
+<li><p>There’s no benefit (and it would be bad design) to put a superfluous
+<code class="docutils literal notranslate"><span class="pre">get_price()</span></code> on the melons that don’t need it (everything but
+Casaba and Ogen); these melons should just inherit and use the
+<code class="docutils literal notranslate"><span class="pre">get_price()</span></code> method.</p></li>
+</ul>
+</section>
+<section class="section" id="part-v">
+<h1>Part V</h1>
+<p>This part is optional and is really here to just give advanced pairs something
+to work on if they finish early.</p>
+<p>They’ll need to get today’s date and then check to see if we sell that
+melon today:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">AbstractOrder</span><span class="p">:</span>
+    <span class="c1"># ... rest of class stays same</span>
+    <span class="k">def</span> <span class="nf">available_now</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">today</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">month</span>
+
+        <span class="k">if</span> <span class="n">month</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="s1">&#39;Winter&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">seasons</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">month</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="s1">&#39;Winter&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">seasons</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">month</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">and</span> <span class="s1">&#39;Winter&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">seasons</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">month</span> <span class="o">==</span> <span class="mi">4</span> <span class="ow">and</span> <span class="s1">&#39;Spring&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">seasons</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">month</span> <span class="o">==</span> <span class="mi">5</span> <span class="ow">and</span> <span class="s1">&#39;Spring&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">seasons</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">month</span> <span class="o">==</span> <span class="mi">6</span> <span class="ow">and</span> <span class="s1">&#39;Spring&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">seasons</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">month</span> <span class="o">==</span> <span class="mi">7</span> <span class="ow">and</span> <span class="s1">&#39;Summer&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">seasons</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">month</span> <span class="o">==</span> <span class="mi">8</span> <span class="ow">and</span> <span class="s1">&#39;Summer&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">seasons</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">month</span> <span class="o">==</span> <span class="mi">9</span> <span class="ow">and</span> <span class="s1">&#39;Summer&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">seasons</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">month</span> <span class="o">==</span> <span class="mi">10</span> <span class="ow">and</span> <span class="s1">&#39;Fall&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">seasons</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">month</span> <span class="o">==</span> <span class="mi">11</span> <span class="ow">and</span> <span class="s1">&#39;Fall&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">seasons</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">month</span> <span class="o">==</span> <span class="mi">12</span> <span class="ow">and</span> <span class="s1">&#39;Fall&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">seasons</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>(They could also handle that logic differently; the core parts are for them
+to get the month and check the list of seasons.)</p>
+<p>For the advanced-advanced part, they’d need to default to today’s date.
+They might try something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">available_now</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">the_date</span><span class="o">=</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()):</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="n">the_date</span><span class="o">.</span><span class="n">month</span>
+    <span class="c1"># ... rest of code here</span>
+</pre></div>
+</div>
+<p>But, of course, Python doesn’t allow dynamic function/method arguments (if it
+did, that would be when the program started, which might be months from today
+if this were a long-running web server!)</p>
+<p>Instead, they’ll need to discover the idea of a “marker” argument. This might
+require some cleverness and Googling and is pretty advanced:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">available_now</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">the_date</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">the_date</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">the_date</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+
+    <span class="n">month</span> <span class="o">=</span> <span class="n">the_date</span><span class="o">.</span><span class="n">month</span>
+    <span class="c1"># ... rest of code here</span>
+</pre></div>
+</div>
+</section>
+
+        </main>
+
+        <footer id="page-footer">
+            <p>&copy; 2022 Devmountain</p>
+        </footer>
+      </div>
+
+      <script src="../_static/main.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+  </body>
+</html>

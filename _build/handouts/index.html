@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Classes: Melons | Devmountain Foundations</title>
+
+      <link
+        href="_static/pygments.css"
+        rel="stylesheet"
+        type="text/css"
+      />
+      <link href="_static/devmountain.css" rel="stylesheet" type="text/css" />
+          <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+          <link rel="stylesheet" type="text/css" href="_static/devmountain.css" />
+          <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+          <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+
+      <script src="_static/pdfobject.min.js"></script>
+      
+  </head>
+  <body>
+      <div id="handouts-container">
+        <header id="page-header">
+            <p id="project-title">Devmountain Foundations</p>
+            <p id="page-title">Classes: Melons</p>
+              <p id="backlink">
+                <a href="/"> &laquo; Back to Homepage </a>
+              </p>
+        </header>
+
+        <nav id="page-toc"><ul>
+<li><a class="reference internal" href="#">Classes: Melons</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a><ul>
+<li><a class="reference internal" href="#self">self</a></li>
+<li><a class="reference internal" href="#init">__init__</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#need-more-help">Need More Help?</a></li>
+<li><a class="reference internal" href="#exercise">Exercise</a></li>
+<li><a class="reference internal" href="#part-i-classes">Part I: Classes</a><ul>
+<li><a class="reference internal" href="#getting-started-and-trying-it-out">Getting Started and Trying it Out</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#part-ii-hierarchies">Part II: Hierarchies</a><ul>
+<li><a class="reference internal" href="#first-some-more-learning">First, Some More Learning</a></li>
+<li><a class="reference internal" href="#now-back-to-your-exercise">Now, Back To Your Exercise</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+
+        <main id="page-content">
+            <section class="section" id="classes-melons">
+<h1>Classes: Melons</h1>
+<section class="section" id="classes">
+<h2>Classes</h2>
+<p>Classes are a useful way to model the combination of data and logic.</p>
+<p>We might make a <cite>salesperson</cite> class to model information about
+salespeople like so:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Salesperson</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A salesperson at Ubermelon.&quot;&quot;&quot;</span>
+
+    <span class="n">base_salary</span> <span class="o">=</span> <span class="mi">50000</span>
+    <span class="n">commission_rate</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+    <span class="k">def</span> <span class="nf">calculate_monthly_pay</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total_of_sales</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Determines amount of monthly pay.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_salary</span> <span class="o">/</span> <span class="mi">12</span> <span class="o">+</span> <span class="p">(</span><span class="n">total_of_sales</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">commission_rate</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We could then make a salesperson like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">jayda</span> <span class="o">=</span> <span class="n">Salesperson</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>And we can call the <cite>calculate_monthly_pay</cite> method on her like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">jayda</span><span class="o">.</span><span class="n">calculate_monthly_pay</span><span class="p">(</span><span class="n">total_of_sales</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="go">4216.0</span>
+</pre></div>
+</div>
+<p>Of course, not all salespeople get paid the same. We could have a more senior
+saleswoman, Juanita, who gets a higher commission:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">juanita</span> <span class="o">=</span> <span class="n">Salesperson</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">juanita</span><span class="o">.</span><span class="n">commission_rate</span> <span class="o">=</span> <span class="mf">0.10</span>
+</pre></div>
+</div>
+<p>Each “instance” of a class (often called an “object”) can have different
+attributes (like <cite>base_salary</cite> and <cite>commission_rate</cite>).</p>
+<section class="section" id="self">
+<h3>self</h3>
+<p>So, what’s that “self” in our class?</p>
+<p>That’s the actual individual salesperson! In <cite>calculate_monthly_pay</cite>, when
+we talk about <code class="docutils literal notranslate"><span class="pre">self.base_salary</span></code>, we don’t mean “the base salary that <em>all</em>
+salespeople have” (since that can change from salesperson to salesperson!);
+we mean the base salary of this individual salesperson.</p>
+<p>Functions on classes (called “methods”) always take <cite>self</cite> as their first
+parameter. You don’t pass this to the method explicitly—instead, when you call
+the method on an instance of the class, it’s passed automatically.</p>
+<p><em>Huh?</em> What’s that mean?</p>
+<p>In other words, since our <cite>calculate_monthly_pay</cite> has self as it’s first
+argument, when we call it like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">juanita</span><span class="o">.</span><span class="n">calculate_monthly_pay</span><span class="p">(</span><span class="mi">5000</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The argument for <cite>self</cite> becomes Juanita herself! The <cite>5000</cite> we pass becomes
+the second argument, <cite>total_of_sales</cite>.</p>
+</section>
+<section class="section" id="init">
+<h3>__init__</h3>
+<p>It’s a bit of a pain to have to create a salesperson and then manually
+change their commission rate and base pay, though – it would be nice if
+we could set this when we create them.</p>
+<p>If a class defines a <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method, this is automatically called
+when we create instances (“instantiate objects”) from the class.</p>
+<p>We could update our <cite>Salesperson</cite> class to have this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Salesperson</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A salesperson at Ubermelon.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_salary</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">commission_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_salary</span> <span class="o">=</span> <span class="n">base_salary</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">commission_rate</span> <span class="o">=</span> <span class="n">commission_rate</span>
+
+    <span class="k">def</span> <span class="nf">calculate_monthly_pay</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total_of_sales</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Determines amount of monthly pay.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_salary</span> <span class="o">/</span> <span class="mi">12</span> <span class="o">+</span> <span class="p">(</span><span class="n">total_of_sales</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">commission_rate</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that <cite>__init__</cite> doesn’t return anything–it just updates the
+newly-made instance to change things about it.</p>
+</section>
+</section>
+<section class="section" id="need-more-help">
+<h2>Need More Help?</h2>
+<p>If you’d like to read a bit more during this exercise, here are some links to
+book chapters on classes. <strong>Don’t just start reading, though</strong>. Do this if you
+feel stuck. It’s often helpful to try a problem until you get stuck and then
+dig into material.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.greenteapress.com/thinkpython/html/thinkpython016.html" target="_blank">Classes and objects</a></p></li>
+<li><p><a class="reference external" href="http://www.greenteapress.com/thinkpython/html/thinkpython017.html" target="_blank">Classes and functions</a></p></li>
+<li><p><a class="reference external" href="http://www.greenteapress.com/thinkpython/html/thinkpython018.html" target="_blank">Classes and methods</a></p></li>
+<li><p><a class="reference external" href="http://www.greenteapress.com/thinkpython/html/thinkpython019.html" target="_blank">Inheritance</a></p></li>
+</ul>
+</section>
+<section class="section" id="exercise">
+<h2>Exercise</h2>
+<p>Ubermelon sells different types of melons. The ways our melon prices and
+availability vary can be:</p>
+<ul class="simple">
+<li><p>The species (e.g., Watermelon versus Cantaloupe).</p></li>
+<li><p>The color of the melon.</p></li>
+<li><p>Whether this melon is imported or grown domestically.</p></li>
+<li><p>The shape of this melon. Most melons are natural-shaped (often round or
+bullet-shaped) but we also sell melons which have been grown to be square,
+at a considerably higher price.</p></li>
+<li><p>The seasons of the melons.</p></li>
+</ul>
+<p>Our melons are:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 9%" />
+<col style="width: 20%" />
+<col style="width: 11%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Species</p></th>
+<th class="head"><p>Color</p></th>
+<th class="head"><p>Is Imported?</p></th>
+<th class="head"><p>Shape</p></th>
+<th class="head"><p>Seasons</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Watermelon</p></td>
+<td><p>green</p></td>
+<td><p>False</p></td>
+<td><p>natural</p></td>
+<td><p>Fall, Summer</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cantaloupe</p></td>
+<td><p>tan</p></td>
+<td><p>False</p></td>
+<td><p>natural</p></td>
+<td><p>Spring, Summer</p></td>
+</tr>
+<tr class="row-even"><td><p>Casaba</p></td>
+<td><p>green</p></td>
+<td><p>True</p></td>
+<td><p>natural</p></td>
+<td><p>Spring, Summer, Fall, Winter</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sharlyn</p></td>
+<td><p>tan</p></td>
+<td><p>True</p></td>
+<td><p>natural</p></td>
+<td><p>Summer</p></td>
+</tr>
+<tr class="row-even"><td><p>Santa Claus</p></td>
+<td><p>green</p></td>
+<td><p>True</p></td>
+<td><p>natural</p></td>
+<td><p>Winter, Spring</p></td>
+</tr>
+<tr class="row-odd"><td><p>Christmas</p></td>
+<td><p>green</p></td>
+<td><p>False</p></td>
+<td><p>natural</p></td>
+<td><p>Winter, Spring</p></td>
+</tr>
+<tr class="row-even"><td><p>Horned Melon</p></td>
+<td><p>yellow</p></td>
+<td><p>True</p></td>
+<td><p>natural</p></td>
+<td><p>Summer</p></td>
+</tr>
+<tr class="row-odd"><td><p>Xigua</p></td>
+<td><p>black</p></td>
+<td><p>True</p></td>
+<td><p>square</p></td>
+<td><p>Summer</p></td>
+</tr>
+<tr class="row-even"><td><p>Ogen</p></td>
+<td><p>tan</p></td>
+<td><p>False</p></td>
+<td><p>natural</p></td>
+<td><p>Spring, Summer</p></td>
+</tr>
+</tbody>
+</table>
+<p>We could model this in Python as a list of tuples, with each tuple being
+a data structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Melons</span>
+<span class="c1">#</span>
+<span class="c1"># fields are:</span>
+<span class="c1">#</span>
+<span class="c1"># species, color, is-imported (else is domestic), shape, seasons</span>
+
+<span class="n">melons</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;Watermelon&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;natural&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Fall&#39;</span><span class="p">,</span> <span class="s1">&#39;Summer&#39;</span><span class="p">]),</span>
+    <span class="p">(</span><span class="s1">&#39;Cantaloupe&#39;</span><span class="p">,</span> <span class="s1">&#39;tan&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;natural&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Spring&#39;</span><span class="p">,</span> <span class="s1">&#39;Summer&#39;</span><span class="p">]),</span>
+    <span class="p">(</span><span class="s1">&#39;Casaba&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;natural&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Spring&#39;</span><span class="p">,</span> <span class="s1">&#39;Summer&#39;</span><span class="p">,</span> <span class="s1">&#39;Fall&#39;</span><span class="p">,</span> <span class="s1">&#39;Winter&#39;</span><span class="p">]),</span>
+    <span class="p">(</span><span class="s1">&#39;Sharlyn&#39;</span><span class="p">,</span> <span class="s1">&#39;tan&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;natural&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Summer&#39;</span><span class="p">]),</span>
+    <span class="p">(</span><span class="s1">&#39;Santa Claus&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;natural&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Winter&#39;</span><span class="p">,</span> <span class="s1">&#39;Spring&#39;</span><span class="p">]),</span>
+    <span class="p">(</span><span class="s1">&#39;Christmas&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;natural&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Winter&#39;</span><span class="p">]),</span>
+    <span class="p">(</span><span class="s1">&#39;Horned Melon&#39;</span><span class="p">,</span> <span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;natural&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Summer&#39;</span><span class="p">]),</span>
+    <span class="p">(</span><span class="s1">&#39;Xigua&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;square&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Summer&#39;</span><span class="p">]),</span>
+    <span class="p">(</span><span class="s1">&#39;Ogen&#39;</span><span class="p">,</span> <span class="s1">&#39;tan&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;natural&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Spring&#39;</span><span class="p">,</span> <span class="s1">&#39;Summer&#39;</span><span class="p">])</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Our salespeople use the following rules to determine the price of melons (rules
+are applied in this order):</p>
+<ul class="simple">
+<li><p>Normally, the base cost of melons is $5/each.</p></li>
+<li><p>The base cost of Casabas and Ogens is $1/each more, though, as they’re
+harder to grow.</p></li>
+<li><p>Imported melons cost 1.5 times as much as they otherwise would, because of
+shipping cost.</p></li>
+<li><p>Square melons cost 2 times as much as they otherwise would, because of the
+much more intense effort to grow them.</p></li>
+</ul>
+<p>Right now, we’ve just had our salespeople look at the data file and figure out
+how much a melon will cost by applying all of these rules to the melon.</p>
+<p>So, for example:</p>
+<ul class="simple">
+<li><p>a Horned Melon (which is foreign-grown, natural-shaped) would
+cost $5 × 1.5 (for being foreign-grown) = <strong>$7.50</strong></p></li>
+<li><p>A Casaba is <strong>$9</strong> (base price $5
+plus $1 for being a Casba or Ogen, times 1.5 for being imported).</p></li>
+</ul>
+<p>We have some new challenges, though: some of our melons are
+discounted for multiple purchases. Starting now, we’re offering the following
+discounts:</p>
+<ul class="simple">
+<li><p>If you buy 3 or more Watermelons, you get all of them at 75% of what the
+cost would otherwise be. So, determine the price for all of the Watermelons
+someone wants and, if it’s three melons or more, multiply that total by
+0.75.</p></li>
+<li><p>If you buy 5 or more Cantaloupes, you get them all at half price (because,
+really, who likes Cantaloupe <em>that much</em>?).</p></li>
+</ul>
+</section>
+<section class="section" id="part-i-classes">
+<h2>Part I: Classes</h2>
+<p>This is really a pain for our salespeople, and also makes it hard to get
+data right for our web site.</p>
+<p>As we’ve been learning about classes, this seems like a great time to use
+classes—since we’re combining data <em>and</em> functionality.</p>
+<p>Look at our requirements:</p>
+<p><strong>Define a class for each melon order type</strong></p>
+<p>Define a class for each melon order type that we sell. You should do this in
+the <code class="docutils literal notranslate"><span class="pre">melons.py</span></code> file (which has a bit of code in it for the <cite>WatermelonOrder</cite>
+class, but it’s not complete).</p>
+<p><strong>Add Attributes</strong></p>
+<p>Add attributes for things like their species/color/shape/origin/seasons</p>
+<p><strong>Write the get_price Method</strong></p>
+<p>Add a method with the following signature:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_price</span><span class="p">(</span><span class="n">qty</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determine price for this quantity of melons of this type.</span>
+
+<span class="sd">    Return a float of the total price.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>This way, we can ask each melon class how much <cite>x</cite> number melons of that
+type should cost.</p>
+<p>Write the functionality to determine the price for each class of melon.
+This will be different for our different types of melons, so this function
+will be different, slightly, for each class you made.</p>
+<section class="section" id="getting-started-and-trying-it-out">
+<h3>Getting Started and Trying it Out</h3>
+<p>We’ve given you a start with the <cite>WatermelonOrder</cite> class.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;This file should have our melon-type classes in it.&quot;&quot;&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">WatermelonOrder</span><span class="p">:</span>
+    <span class="n">species</span> <span class="o">=</span> <span class="s2">&quot;Watermelon&quot;</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;green&quot;</span>
+    <span class="n">imported</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="s2">&quot;natural&quot;</span>
+    <span class="n">seasons</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Fall&quot;</span><span class="p">,</span> <span class="s2">&quot;Summer&quot;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qty</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculate price, given a number of melons ordered.&quot;&quot;&quot;</span>
+
+        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># TODO, calculate the real amount!</span>
+
+        <span class="k">return</span> <span class="n">total</span>
+</pre></div>
+</div>
+<p>Once you’ve written some code, you can test your code by going into the
+python console and interactively playing with your classes.</p>
+<p>To do so:</p>
+<pre class="console literal-block">$ <span class="cmd">python -i melons.py</span>
+&gt;&gt;&gt;</pre>
+<p>The “-i” command for Python means “run in the interpreter”–it runs your
+Python module (file) and leaves you in the Python interpreter, so you can
+test out your code.</p>
+<p><strong>Bonus idea:</strong> try it as <code class="docutils literal notranslate"><span class="pre">ipython</span> <span class="pre">-i</span></code>. Yay, code completion, docstrings,
+and pretty colors!</p>
+<p>At this point, you should be able to try things like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">w</span> <span class="o">=</span> <span class="n">WatermelonOrder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">w</span><span class="o">.</span><span class="n">get_price</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">w</span><span class="o">.</span><span class="n">get_price</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">11.25</span>
+</pre></div>
+</div>
+<p>(the latter price because of our special rule about discounts for quantity
+purchases of Watermelons)</p>
+</section>
+</section>
+<section class="section" id="part-ii-hierarchies">
+<h2>Part II: Hierarchies</h2>
+<section class="section" id="first-some-more-learning">
+<h3>First, Some More Learning</h3>
+<p>We can have one class “inherit” from another class, where it gets all of
+the attributes (data) and methods (smarts) from a “parent” class.</p>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">InternSalesperson</span><span class="p">(</span><span class="n">Salesperson</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A college intern at Ubermelon working in sales.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>Since <cite>InternSalesperson</cite> “inherits” from <cite>Salesperson</cite>, everything a salesperson
+can do, an InternSalesperson can do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">jessica</span> <span class="o">=</span> <span class="n">InternSalesperson</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jessica</span><span class="o">.</span><span class="n">base_salary</span>
+<span class="go">50000</span>
+</pre></div>
+</div>
+<p>Oops. That’s a lot to pay an intern.</p>
+<p>So we could modify the <cite>InternSalesperson</cite> class to “override” some attributes or
+methods:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">InternSalesperson</span><span class="p">(</span><span class="n">Salesperson</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A college intern at Ubermelon working in sales.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_salary</span><span class="o">=</span><span class="mi">20000</span><span class="p">,</span> <span class="n">commission_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_salary</span> <span class="o">=</span> <span class="n">base_salary</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">commission_rate</span> <span class="o">=</span> <span class="n">commission_rate</span>
+</pre></div>
+</div>
+<p><em>(Note the change from 50k to 20k)</em></p>
+<p>Now, <cite>InternSalesperson</cite> objects will run a slightly different <cite>__init__</cite> method
+when they’re created, but they still share the same <cite>calculate_monthly_pay</cite> method.</p>
+</section>
+<section class="section" id="now-back-to-your-exercise">
+<h3>Now, Back To Your Exercise</h3>
+<p>Our CEO is always toying with changing the base price of melons from $5 to
+something else, sometimes on a whimsical basis.</p>
+<p>Right now, you probably have code that looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">WatermelonOrder</span><span class="p">:</span>
+    <span class="n">species</span> <span class="o">=</span> <span class="s2">&quot;Watermelon&quot;</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;green&quot;</span>
+    <span class="n">imported</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="s1">&#39;natural&#39;</span>
+    <span class="n">seasons</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Fall&#39;</span><span class="p">,</span> <span class="s1">&#39;Summer&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qty</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="mf">5.0</span> <span class="o">*</span> <span class="n">qty</span>
+        <span class="k">if</span> <span class="n">qty</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">*</span> <span class="mf">0.75</span>
+        <span class="k">return</span> <span class="n">total</span>
+</pre></div>
+</div>
+<p>(and similar classes for all of the other melon order types)</p>
+<p>It would be a pain to change the base $5.00 cost of melons for each of the
+melons by changing each class individually, though.</p>
+<p>You <em>could</em> make the base price come from a constant, like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BASE_MELON_PRICE</span> <span class="o">=</span> <span class="mf">5.00</span>
+
+<span class="k">class</span> <span class="nc">WatermelonOrder</span><span class="p">:</span>
+    <span class="n">species</span> <span class="o">=</span> <span class="s2">&quot;Watermelon&quot;</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;green&quot;</span>
+    <span class="n">imported</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="s1">&#39;natural&#39;</span>
+    <span class="n">seasons</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Fall&#39;</span><span class="p">,</span> <span class="s1">&#39;Summer&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qty</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="n">BASE_MELON_PRICE</span> <span class="o">*</span> <span class="n">qty</span>
+        <span class="k">if</span> <span class="n">qty</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">*</span> <span class="mf">0.75</span>
+        <span class="k">return</span> <span class="n">total</span>
+</pre></div>
+</div>
+<p>That would make it easier to update–but it wouldn’t be flexible enough for
+our CEO. Sometimes the CEO talks about making the base price vary on dynamic
+things, like the weather that day or the day of the week, or other things.
+If we had to put that dynamic logic into each melon type class, we’d be
+duplicating a lot of code–so even though it’s $5 for now, we want to
+plan ahead.</p>
+<p>We could solve this by making all of our melons subclass a common base class
+(<cite>MelonOrder</cite> might be a good name for this!), and they could get the base price
+of melons by calling a method, <cite>get_base_price()</cite> on the parent <cite>MelonOrder</cite> class.
+For now, this <code class="docutils literal notranslate"><span class="pre">get_base_price</span></code> could just return 5—but we’re creating a
+“hook” where we could later do something smarter/more complex.</p>
+<p>That is, if you change the base price on the MelonOrder class, all of your other
+classes would still be able to get the newly-updated cost.</p>
+<p>If you’d like to try out other parts of classes, you can continue on to the
+more-advanced and optional <a class="reference external" href="further-study.html">Further Study</a>.</p>
+</section>
+</section>
+</section>
+
+        </main>
+
+        <footer id="page-footer">
+            <p>&copy; 2022 Devmountain</p>
+        </footer>
+      </div>
+
+      <script src="_static/main.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+  </body>
+</html>

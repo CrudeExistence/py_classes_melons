@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Further Study | Devmountain Foundations</title>
+
+      <link
+        href="_static/pygments.css"
+        rel="stylesheet"
+        type="text/css"
+      />
+      <link href="_static/devmountain.css" rel="stylesheet" type="text/css" />
+          <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+          <link rel="stylesheet" type="text/css" href="_static/devmountain.css" />
+          <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+          <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+
+      <script src="_static/pdfobject.min.js"></script>
+      
+  </head>
+  <body>
+      <div id="handouts-container">
+        <header id="page-header">
+            <p id="project-title">Devmountain Foundations</p>
+            <p id="page-title">Further Study</p>
+              <p id="backlink">
+                <a href="/"> &laquo; Back to Homepage </a>
+              </p>
+        </header>
+
+        <nav id="page-toc"><ul>
+<li><a class="reference internal" href="#">Further Study</a><ul>
+<li><a class="reference internal" href="#part-iii-abstract-classes">Part III: Abstract Classes</a><ul>
+<li><a class="reference internal" href="#grrr">Grrr</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#part-iv-flexing-our-hierarchies">Part IV: Flexing Our Hierarchies</a></li>
+<li><a class="reference internal" href="#part-iv-is-the-melon-available">Part IV: Is the Melon Available?</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+
+        <main id="page-content">
+            <section class="section" id="further-study">
+<h1>Further Study</h1>
+<section class="section" id="part-iii-abstract-classes">
+<h2>Part III: Abstract Classes</h2>
+<p>So, in the last part, you probably ended up with a parent class like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MelonOrder</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Base type for all melon orders.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">get_base_price</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Base price for all melons.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="mf">5.00</span>
+</pre></div>
+</div>
+<p>and child classes like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">WatermelonOrder</span><span class="p">(</span><span class="n">MelonOrder</span><span class="p">):</span>
+    <span class="n">species</span> <span class="o">=</span> <span class="s2">&quot;Watermelon&quot;</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;green&quot;</span>
+    <span class="n">imported</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="s1">&#39;natural&#39;</span>
+    <span class="n">seasons</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Fall&#39;</span><span class="p">,</span> <span class="s1">&#39;Summer&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qty</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_base_price</span><span class="p">()</span> <span class="o">*</span> <span class="n">qty</span>
+        <span class="k">if</span> <span class="n">qty</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">*</span> <span class="mf">0.75</span>
+        <span class="k">return</span> <span class="n">total</span>
+</pre></div>
+</div>
+<p>That’s great.</p>
+<p>However, some of our other programmers didn’t realize we couldn’t sell
+“plain melons” (ie, not of any particular species!) – they would create
+instances of the <cite>MelonOrder</cite> class and try to get their price:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; melon = MelonOrder()
+&gt;&gt;&gt; melon.get_price(5)
+Traceback (most recent call last):
+File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+AttributeError: MelonOrder instance has no attribute &#39;get_price&#39;
+</pre></div>
+</div>
+<p>How can we suggest to other programmers that they shouldn’t ever directly
+create instances of the base <cite>MelonOrder</cite> class?</p>
+<p>There’s a good naming convention for this. Take a look at Python docs
+or try to find out this via search (it’s good to practice your programmer-search
+skills!)</p>
+<div class="togglereveal "><details class="admonition-body"><summary></summary><p>It’s common to name these “abstract” (ie, only exist as an abstract idea,
+not as a real thing) classes with the name <cite>Abstract</cite>, so <cite>AbstractMelonOrder</cite>
+would be a great name for this.</p>
+</details></div><p>Go ahead and rename this class
+and fix the code to use this naming convention (hint: read about how to do this kind of
+replace-everywhere in your editor! Good programmers are lazy).</p>
+<section class="section" id="grrr">
+<h3>Grrr</h3>
+<p>However, even with this name change, some of our programmers STILL are
+trying to instantiate from this class (that is, make instances of this class).</p>
+<p>Think about a way you could prevent them from doing so.</p>
+<p>You could do this either by:</p>
+<ul class="simple">
+<li><p>allowing them to make an instance of this class, but giving a better
+error message when they try to call <code class="docutils literal notranslate"><span class="pre">get_price(qty)</span></code> on it (so you could
+raise a message when <code class="docutils literal notranslate"><span class="pre">get_price(qty)</span></code> is called on the base class
+directly).</p></li>
+</ul>
+<p>or</p>
+<ul class="simple">
+<li><p>disallowing them from making an instance of this class at all. Is there
+a method that is always called when an object is created? Can you raise
+an error on the base class if you tried to make an instance directly from
+it?</p></li>
+</ul>
+<p>Which of these options do you like better?</p>
+<p>Whichever you choose, learn how to “raise” an error (“exception”) in Python.
+You may find <a class="reference external" href="https://docs.python.org/2/library/exceptions.html" target="_blank">https://docs.python.org/2/library/exceptions.html</a> helpful here.
+Which of these errors sounds like it would be the most helpful/descriptive
+to use?</p>
+<div class="admonition note">
+<p class="admonition-title">Exception Hierarchies</p>
+<div class="admonition-body docutils container">
+<p>An advanced-but-interesting note on exceptions, for the curious:</p>
+<p>Notice how the Python exceptions are a hierarchy of classes–
+this let’s you catch a general class of error or a very specific error,
+depending on which is what you want. So you can say things like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="mi">7</span> <span class="o">/</span> <span class="mi">0</span>
+<span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You can&#39;t divide by zero!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="mi">7</span> <span class="o">/</span> <span class="mi">0</span>
+<span class="k">except</span> <span class="ne">ArithmeticError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You made some sort of mathy error&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Depending on whether you want to handle zero-division distinctly or just like
+other math errors. You could even write something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="mi">7</span> <span class="o">/</span> <span class="mi">0</span>
+<span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You can&#39;t divide by zero!&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ArithmeticError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You made some other sort of mathy error&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Which would handle all cases, but handle zero-division separately.</p>
+<p>Pretty neat, huh?</p>
+</div>
+</div>
+</section>
+</section>
+<section class="section" id="part-iv-flexing-our-hierarchies">
+<h2>Part IV: Flexing Our Hierarchies</h2>
+<p>Right now, you probably have code like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">WatermelonOrder</span><span class="p">(</span><span class="n">AbstractMelonOrder</span><span class="p">):</span>
+    <span class="n">species</span> <span class="o">=</span> <span class="s2">&quot;Watermelon&quot;</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;green&quot;</span>
+    <span class="n">imported</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="s1">&#39;natural&#39;</span>
+    <span class="n">seasons</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Fall&#39;</span><span class="p">,</span> <span class="s1">&#39;Summer&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qty</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_base_price</span><span class="p">()</span> <span class="o">*</span> <span class="n">qty</span>
+        <span class="k">if</span> <span class="n">qty</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">*</span> <span class="mf">0.75</span>
+        <span class="k">return</span> <span class="n">total</span>
+</pre></div>
+</div>
+<p>That’s fine, but we have a few things we can improve.</p>
+<p>Watermelons are our standard base price (except for quantity discounts)
+since they’re natural-shaped and domestically-grown. If our supplier for
+Watermelons switched to being foreign-grown, we’d have to do two things:</p>
+<ul class="simple">
+<li><p>change that attribute to <code class="docutils literal notranslate"><span class="pre">imported</span> <span class="pre">=</span> <span class="pre">True</span></code></p></li>
+<li><p>update our <code class="docutils literal notranslate"><span class="pre">get_price(qty)</span></code> method to multiply the final price by 1.5,
+since that’s our markup for imported watermelons</p></li>
+</ul>
+<p>It’s easy to imagine that we’d do the first and forget to do the second.
+Plus, even if we did, we’d be sprinkling the logic for this all over
+the place.</p>
+<p>For example, we could do this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">WatermelonOrder</span><span class="p">(</span><span class="n">AbstractMelonOrder</span><span class="p">):</span>
+    <span class="n">species</span> <span class="o">=</span> <span class="s2">&quot;Watermelon&quot;</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;green&quot;</span>
+    <span class="n">imported</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="s1">&#39;natural&#39;</span>
+    <span class="n">seasons</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Fall&#39;</span><span class="p">,</span> <span class="s1">&#39;Summer&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qty</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_base_price</span><span class="p">()</span> <span class="o">*</span> <span class="n">qty</span>
+
+        <span class="k">if</span> <span class="n">qty</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">*</span> <span class="mf">0.75</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">imported</span><span class="p">:</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">*</span> <span class="mf">1.5</span>
+
+        <span class="k">return</span> <span class="n">total</span>
+</pre></div>
+</div>
+<p>And then we can’t forget to update the price if the origin changes–but
+we’d have a lot of duplicate code throughout.</p>
+<p>Better would be for our base class, <cite>AbstractMelonOrder</cite>, to handle much of
+our price calculating, but for it to rely on the attributes set on the
+individual melon type.</p>
+<p>In this <code class="docutils literal notranslate"><span class="pre">get_price()</span></code> for <cite>AbstractMelonOrder</cite>, We’d need to get the “add-on” $1
+for Casaba and Ogen somehow, then the total based on shape/origin/quantity.
+For Watermelons and Cantaloupe, we’ll need to then apply our discounts.</p>
+<p>Create a method on the base class to handle this work. Where needed,
+use that method from the individual melon classes.</p>
+<p>To do this, it’s probably going to be helpful to put an attribute on the
+the Casaba and Ogen class to keep track of their $1 base price bump;
+your logic in the base class <code class="docutils literal notranslate"><span class="pre">get_price()</span></code> could use that.</p>
+</section>
+<section class="section" id="part-iv-is-the-melon-available">
+<h2>Part IV: Is the Melon Available?</h2>
+<p><em>(This section is very advanced)</em></p>
+<p>For availability, we keep track of the season that a melon is available for
+purchase. We define these as:</p>
+<ul class="simple">
+<li><p>Winter: Jan, Feb, Mar</p></li>
+<li><p>Spring: Apr, May, Jun</p></li>
+<li><p>Summer: Jul, Aug, Sep</p></li>
+<li><p>Fall: Oct, Nov, Dec</p></li>
+</ul>
+<p>Add a function onto our AbstractMelonOrder class that tells us whether a
+particular melon is available for sale today.</p>
+<p>To do this, you’ll want to learn about the Python <cite>datetime</cite> library. This
+has features to give you today’s date, as well as ways to figure out the
+month part of that.</p>
+<p>Create a function that returns <cite>True</cite> or <cite>False</cite> to let us know whether
+this melon is available today.</p>
+<p>Advanced: Update this function to <em>optionally</em> take a date argument so
+that, if one is given, we check for melon availability on that date. If
+no argument is given, it should use today’s date. This requires a little
+clever thinking around optional arguments.</p>
+</section>
+</section>
+
+        </main>
+
+        <footer id="page-footer">
+            <p>&copy; 2022 Devmountain</p>
+        </footer>
+      </div>
+
+      <script src="_static/main.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+  </body>
+</html>
